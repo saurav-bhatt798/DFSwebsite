@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFS Mastery Pro - Complete Visual Guide</title>
+    <style>
+        /* Modern Gradient Background */
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #4cc9f0;
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background: rgba(76, 201, 240, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #4cc9f0, #f72585);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin: 2rem 0 1rem;
+            color: #4cc9f0;
+            border-bottom: 2px solid rgba(76, 201, 240, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #f72585;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            max-width: 800px;
+        }
+
+        /* Interactive Elements */
+        .button {
+            display: inline-block;
+            background: linear-gradient(45deg, #f72585, #4cc9f0);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 1rem 0.5rem 0 0;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #4cc9f0;
+        }
+
+        /* Graph Containers */
+        .graph-container {
+            width: 100%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Example Cards */
+        .example-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s;
+            border-left: 4px solid #4cc9f0;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Code Blocks */
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 1rem 0;
+            border-left: 3px solid #f72585;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .graph-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#hero">Home</a>
+        <a href="#what-is-dfs">DFS Explained</a>
+        <a href="#graph-types">Graph Types</a>
+        <a href="#visualizations">Visualizations</a>
+        <a href="#applications">Applications</a>
+        <a href="#game-examples">Game Solving</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <h1>Master Depth-First Search Visually</h1>
+        <p>The most comprehensive interactive guide to DFS algorithms with <strong>3D visualizations</strong>, <strong>real-world applications</strong>, and <strong>game-solving examples</strong>.</p>
+        <a href="#what-is-dfs" class="button">Start Learning</a>
+        <a href="#visualizations" class="button secondary">View Demos</a>
+    </section>
+
+    <!-- What is DFS Section -->
+    <section id="what-is-dfs">
+        <h1>Depth-First Search Explained</h1>
+        
+        <div class="example-card">
+            <h2>Complete Definition</h2>
+            <p><strong>Depth-First Search (DFS)</strong> is an algorithm for traversing or searching tree or graph data structures. It starts at a selected node (often the root) and explores as far as possible along each branch before backtracking.</p>
+            
+            <h3>Key Characteristics:</h3>
+            <ul>
+                <li><strong>Strategy:</strong> "Go deep first" before exploring wide</li>
+                <li><strong>Data Structure:</strong> Uses a stack (either implicitly via recursion or explicitly)</li>
+                <li><strong>Time Complexity:</strong> O(V + E) where V = vertices, E = edges</li>
+                <li><strong>Space Complexity:</strong> O(V) in worst case (entire tree/graph in memory)</li>
+                <li><strong>Completeness:</strong> Complete in finite spaces, not optimal</li>
+            </ul>
+        </div>
+
+        <div class="example-card">
+            <h2>How DFS Works Step-by-Step</h2>
+            <ol>
+                <li>Start at the initial node (mark as visited)</li>
+                <li>Explore first adjacent unvisited node (arbitrary order)</li>
+                <li>Recurse to the next level</li>
+                <li>When reaching a node with no unvisited neighbors, backtrack</li>
+                <li>Repeat until all reachable nodes are visited</li>
+            </ol>
+            
+            <h3>Pseudocode (Recursive):</h3>
+            <pre>
+DFS(G, v):
+    label v as discovered
+    for all edges from v to w in G.adjacentEdges(v) do
+        if vertex w is not labeled as discovered then
+            recursively call DFS(G, w)</pre>
+            
+            <h3>Pseudocode (Iterative):</h3>
+            <pre>
+DFS(G, start):
+    let S be a stack
+    S.push(start)
+    while S is not empty:
+        v = S.pop()
+        if v is not discovered:
+            label v as discovered
+            for all edges from v to w in G.adjacentEdges(v):
+                S.push(w)</pre>
+        </div>
+    </section>
+
+    <!-- Graph Types Section -->
+    <section id="graph-types">
+        <h1>DFS on Different Graph Types</h1>
+        
+        <div class="example-card">
+            <h2>1. Binary Trees</h2>
+            <p>DFS on binary trees has three variants:</p>
+            <div class="graph-container" id="binary-tree-demo"></div>
+            <div>
+                <button class="button" onclick="runTreeDFS('inorder')">Inorder</button>
+                <button class="button" onclick="runTreeDFS('preorder')">Preorder</button>
+                <button class="button" onclick="runTreeDFS('postorder')">Postorder</button>
+                <button class="button secondary" onclick="resetTree()">Reset</button>
+            </div>
+            <h3>Traversal Orders:</h3>
+            <ul>
+                <li><strong>Pre-order:</strong> Root → Left → Right (Top-down)</li>
+                <li><strong>In-order:</strong> Left → Root → Right (Sorted order for BST)</li>
+                <li><strong>Post-order:</strong> Left → Right → Root (Bottom-up)</li>
+            </ul>
+        </div>
+        
+        <div class="example-card">
+            <h2>2. Directed Graphs</h2>
+            <p>DFS helps detect cycles and perform topological sorting:</p>
+            <div class="graph-container" id="directed-graph-demo"></div>
+            <button class="button" onclick="runDirectedDFS()">Run DFS</button>
+            <button class="button secondary" onclick="resetDirected()">Reset</button>
+            
+            <h3>Key Applications:</h3>
+            <ul>
+                <li><strong>Cycle detection:</strong> Back edges indicate cycles</li>
+                <li><strong>Topological sort:</strong> Order nodes by finishing time</li>
+                <li><strong>Strongly connected components:</strong> Kosaraju's algorithm</li>
+            </ul>
+        </div>
+        
+        <div class="example-card">
+            <h2>3. Undirected Graphs</h2>
+            <p>DFS identifies connected components and articulation points:</p>
+            <div class="graph-container" id="undirected-graph-demo"></div>
+            <button class="button" onclick="runUndirectedDFS()">Run DFS</button>
+            <button class="button secondary" onclick="resetUndirected()">Reset</button>
+            
+            <h3>Key Applications:</h3>
+            <ul>
+                <li><strong>Connected components:</strong> Each DFS discovers one component</li>
+                <li><strong>Bridges:</strong> Edges whose removal increases components</li>
+                <li><strong>Articulation points:</strong> Nodes whose removal increases components</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Visualizations Section -->
+    <section id="visualizations">
+        <h1>Interactive DFS Visualizations</h1>
+        
+        <div class="example-card">
+            <h2>Recursive Call Stack</h2>
+            <p>See how recursion implements DFS with the call stack:</p>
+            <div class="graph-container" id="recursion-demo"></div>
+            <button class="button" onclick="startRecursionDemo()">Start Animation</button>
+            <button class="button secondary" onclick="resetRecursionDemo()">Reset</button>
+            
+            <h3>How Recursion Works:</h3>
+            <ol>
+                <li>Each recursive call adds a stack frame</li>
+                <li>Parameters store current node and state</li>
+                <li>Return address tracks where to continue</li>
+                <li>Stack unwinds during backtracking</li>
+            </ol>
+        </div>
+        
+        <div class="example-card">
+            <h2>Iterative Stack Visualization</h2>
+            <p>Watch how an explicit stack drives the traversal:</p>
+            <div class="graph-container" id="iterative-demo"></div>
+            <button class="button" onclick="startIterativeDemo()">Start Animation</button>
+            <button class="button secondary" onclick="resetIterativeDemo()">Reset</button>
+            
+            <h3>Stack Operations:</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                <tr>
+                    <th style="border: 1px solid #4cc9f0; padding: 0.5rem;">Step</th>
+                    <th style="border: 1px solid #4cc9f0; padding: 0.5rem;">Stack Contents</th>
+                    <th style="border: 1px solid #4cc9f0; padding: 0.5rem;">Action</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #4cc9f0; padding: 0.5rem;">1</td>
+                    <td style="border: 1px solid #4cc9f0; padding: 0.5rem;">[A]</td>
+                    <td style="border: 1px solid #4cc9f0; padding: 0.5rem;">Start at root</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #4cc9f0; padding: 0.5rem;">2</td>
+                    <td style="border: 1px solid #4cc9f0; padding: 0.5rem;">[B, C]</td>
+                    <td style="border: 1px solid #4cc9f0; padding: 0.5rem;">Push neighbors</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #4cc9f0; padding: 0.5rem;">3</td>
+                    <td style="border: 1px solid #4cc9f0; padding: 0.5rem;">[B, F, G]</td>
+                    <td style="border: 1px solid #4cc9f0; padding: 0.5rem;">Process C's children</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="example-card">
+            <h2>Cycle Detection Visualization</h2>
+            <p>Observe how DFS detects cycles in a directed graph:</p>
+            <div class="graph-container" id="cycle-demo"></div>
+            <button class="button" onclick="startCycleDemo()">Start Animation</button>
+            <button class="button secondary" onclick="resetCycleDemo()">Reset</button>
+            
+            <h3>Cycle Detection Process:</h3>
+            <ul>
+                <li>Maintain a recursion stack to track visited nodes</li>
+                <li>Encountering a node already in the stack indicates a cycle</li>
+                <li>Highlight the cycle path when detected</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications">
+        <h1>Real-World DFS Applications</h1>
+        
+        <div class="example-card">
+            <h2>1. Maze Solving</h2>
+            <p>DFS naturally solves mazes by following paths until dead ends:</p>
+            <div class="graph-container" id="maze-demo"></div>
+            <button class="button" onclick="solveMazeDFS()">Solve with DFS</button>
+            <button class="button secondary" onclick="resetMaze()">Reset Maze</button>
+            
+            <h3>How DFS Solves Mazes:</h3>
+            <ul>
+                <li>Always turns left (or right) at junctions</li>
+                <li>Marks visited paths to prevent loops</li>
+                <li>Backtracks when hitting dead ends</li>
+                <li>Guaranteed to find exit if path exists</li>
+            </ul>
+        </div>
+        
+        <div class="example-card">
+            <h2>2. Web Crawling</h2>
+            <p>Search engines use DFS-like crawling to index pages:</p>
+            <div class="graph-container" id="web-crawl-demo"></div>
+            <button class="button" onclick="startCrawling()">Simulate Crawler</button>
+            
+            <h3>Crawling Strategy:</h3>
+            <ol>
+                <li>Start at seed URL (homepage)</li>
+                <li>Extract all links on page</li>
+                <li>Recursively visit each link</li>
+                <li>Depth limit prevents infinite recursion</li>
+            </ol>
+        </div>
+        
+        <div class="example-card">
+            <h2>3. Social Network Analysis</h2>
+            <p>DFS identifies communities and influencers in social networks:</p>
+            <div class="graph-container" id="social-network-demo"></div>
+            <button class="button" onclick="analyzeSocialNetwork()">Analyze Network</button>
+            <button class="button secondary" onclick="resetSocialNetwork()">Reset</button>
+            
+            <h3>Analysis Process:</h3>
+            <ul>
+                <li>Detects connected components (friend groups)</li>
+                <li>Identifies articulation points (key connectors)</li>
+                <li>Computes centrality measures</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Game Examples Section -->
+    <section id="game-examples">
+        <h1>DFS in Game Solving</h1>
+        
+        <div class="example-card">
+            <h2>1. Sudoku Solver</h2>
+            <p>DFS with backtracking solves Sudoku puzzles:</p>
+            <div class="graph-container" id="sudoku-demo" style="height: 500px;"></div>
+            <button class="button" onclick="solveSudoku()">Solve Sudoku</button>
+            <button class="button secondary" onclick="resetSudoku()">New Puzzle</button>
+            
+            <h3>Solving Process:</h3>
+            <pre>
+solveSudoku(grid):
+    find empty cell
+    for num from 1 to 9:
+        if valid placement:
+            place num
+            if solveSudoku(grid) returns true:
+                return true
+            remove num (backtrack)
+    return false</pre>
+        </div>
+        
+        <div class="example-card">
+            <h2>2. Chess Move Exploration</h2>
+            <p>DFS evaluates move trees in chess engines:</p>
+            <div class="graph-container" id="chess-demo"></div>
+            <button class="button" onclick="exploreChessMoves()">Explore Moves</button>
+            
+            <h3>Minimax Algorithm:</h3>
+            <ul>
+                <li>DFS explores possible moves</li>
+                <li>Evaluates board states at leaf nodes</li>
+                <li>Backpropagates scores (min/max)</li>
+                <li>Depth-limited for performance</li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        // ========================
+        // Binary Tree Visualization
+        // ========================
+        const treeCanvas = document.createElement('canvas');
+        document.getElementById('binary-tree-demo').appendChild(treeCanvas);
+        treeCanvas.width = document.getElementById('binary-tree-demo').clientWidth;
+        treeCanvas.height = document.getElementById('binary-tree-demo').clientHeight;
+        const treeCtx = treeCanvas.getContext('2d');
+        
+        const treeNodes = [
+            { id: 'A', x: treeCanvas.width/2, y: 50, left: 'B', right: 'C' },
+            { id: 'B', x: treeCanvas.width/2 - 100, y: 150, left: 'D', right: 'E' },
+            { id: 'C', x: treeCanvas.width/2 + 100, y: 150, left: 'F', right: 'G' },
+            { id: 'D', x: treeCanvas.width/2 - 150, y: 250, left: null, right: null },
+            { id: 'E', x: treeCanvas.width/2 - 50, y: 250, left: null, right: null },
+            { id: 'F', x: treeCanvas.width/2 + 50, y: 250, left: null, right: null },
+            { id: 'G', x: treeCanvas.width/2 + 150, y: 250, left: null, right: null }
+        ];
+        
+        function drawTree(highlighted = []) {
+            treeCtx.clearRect(0, 0, treeCanvas.width, treeCanvas.height);
+            
+            treeNodes.forEach(node => {
+                if (node.left) {
+                    const leftChild = treeNodes.find(n => n.id === node.left);
+                    treeCtx.beginPath();
+                    treeCtx.moveTo(node.x, node.y);
+                    treeCtx.lineTo(leftChild.x, leftChild.y);
+                    treeCtx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                    treeCtx.lineWidth = 2;
+                    treeCtx.stroke();
+                }
+                if (node.right) {
+                    const rightChild = treeNodes.find(n => n.id === node.right);
+                    treeCtx.beginPath();
+                    treeCtx.moveTo(node.x, node.y);
+                    treeCtx.lineTo(rightChild.x, rightChild.y);
+                    treeCtx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                    treeCtx.lineWidth = 2;
+                    treeCtx.stroke();
+                }
+            });
+            
+            treeNodes.forEach(node => {
+                const isHighlighted = highlighted.includes(node.id);
+                
+                treeCtx.beginPath();
+                treeCtx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+                treeCtx.fillStyle = isHighlighted ? '#f72585' : '#4cc9f0';
+                treeCtx.fill();
+                treeCtx.strokeStyle = 'white';
+                treeCtx.lineWidth = 2;
+                treeCtx.stroke();
+                
+                treeCtx.fillStyle = 'white';
+                treeCtx.textAlign = 'center';
+                treeCtx.textBaseline = 'middle';
+                treeCtx.font = 'bold 16px Arial';
+                treeCtx.fillText(node.id, node.x, node.y);
+            });
+        }
+        
+        function runTreeDFS(type) {
+            const order = [];
+            const delay = 800;
+            
+            function traverse(nodeId, type) {
+                const node = treeNodes.find(n => n.id === nodeId);
+                if (!node) return;
+                
+                if (type === 'preorder') order.push(node.id);
+                
+                if (node.left) traverse(node.left, type);
+                if (type === 'inorder') order.push(node.id);
+                
+                if (node.right) traverse(node.right, type);
+                if (type === 'postorder') order.push(node.id);
+            }
+            
+            traverse('A', type);
+            
+            order.forEach((id, i) => {
+                setTimeout(() => {
+                    drawTree([id]);
+                }, i * delay);
+            });
+            
+            setTimeout(() => {
+                drawTree();
+            }, (order.length + 1) * delay);
+        }
+        
+        function resetTree() {
+            drawTree();
+        }
+        
+        drawTree();
+        
+        // ========================
+        // Directed Graph Visualization
+        // ========================
+        const directedCanvas = document.createElement('canvas');
+        document.getElementById('directed-graph-demo').appendChild(directedCanvas);
+        directedCanvas.width = document.getElementById('directed-graph-demo').clientWidth;
+        directedCanvas.height = document.getElementById('directed-graph-demo').clientHeight;
+        const directedCtx = directedCanvas.getContext('2d');
+        
+        const directedNodes = [
+            { id: 'A', x: directedCanvas.width/2, y: 50 },
+            { id: 'B', x: directedCanvas.width/2 - 100, y: 150 },
+            { id: 'C', x: directedCanvas.width/2 + 100, y: 150 },
+            { id: 'D', x: directedCanvas.width/2 - 150, y: 250 },
+            { id: 'E', x: directedCanvas.width/2 - 50, y: 250 },
+            { id: 'F', x: directedCanvas.width/2 + 50, y: 250 },
+            { id: 'G', x: directedCanvas.width/2 + 150, y: 250 }
+        ];
+        
+        const directedEdges = [
+            { from: 'A', to: 'B' },
+            { from: 'A', to: 'C' },
+            { from: 'B', to: 'D' },
+            { from: 'B', to: 'E' },
+            { from: 'C', to: 'F' },
+            { from: 'C', to: 'G' },
+            { from: 'E', to: 'A' }
+        ];
+        
+        function drawDirectedGraph(highlighted = []) {
+            directedCtx.clearRect(0, 0, directedCanvas.width, directedCanvas.height);
+            
+            directedEdges.forEach(edge => {
+                const fromNode = directedNodes.find(n => n.id === edge.from);
+                const toNode = directedNodes.find(n => n.id === edge.to);
+                
+                if (!fromNode || !toNode) return;
+                
+                const angle = Math.atan2(toNode.y - fromNode.y, toNode.x - fromNode.x);
+                const headLength = 15;
+                
+                directedCtx.beginPath();
+                directedCtx.moveTo(fromNode.x, fromNode.y);
+                directedCtx.lineTo(toNode.x, toNode.y);
+                directedCtx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                directedCtx.lineWidth = 2;
+                directedCtx.stroke();
+                
+                directedCtx.beginPath();
+                directedCtx.moveTo(toNode.x, toNode.y);
+                directedCtx.lineTo(
+                    toNode.x - headLength * Math.cos(angle - Math.PI / 6),
+                    toNode.y - headLength * Math.sin(angle - Math.PI / 6)
+                );
+                directedCtx.lineTo(
+                    toNode.x - headLength * Math.cos(angle + Math.PI / 6),
+                    toNode.y - headLength * Math.sin(angle + Math.PI / 6)
+                );
+                directedCtx.closePath();
+                directedCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                directedCtx.fill();
+            });
+            
+            directedNodes.forEach(node => {
+                const isHighlighted = highlighted.includes(node.id);
+                
+                directedCtx.beginPath();
+                directedCtx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+                directedCtx.fillStyle = isHighlighted ? '#f72585' : '#4cc9f0';
+                directedCtx.fill();
+                directedCtx.strokeStyle = 'white';
+                directedCtx.lineWidth = 2;
+                directedCtx.stroke();
+                
+                directedCtx.fillStyle = 'white';
+                directedCtx.textAlign = 'center';
+                directedCtx.textBaseline = 'middle';
+                directedCtx.font = 'bold 16px Arial';
+                directedCtx.fillText(node.id, node.x, node.y);
+            });
+        }
+        
+        function runDirectedDFS() {
+            const traversalOrder = ['A', 'B', 'D', 'E', 'C', 'F', 'G'];
+            const delay = 800;
+            
+            traversalOrder.forEach((id, i) => {
+                setTimeout(() => {
+                    drawDirectedGraph([id]);
+                }, i * delay);
+            });
+            
+            setTimeout(() => {
+                drawDirectedGraph();
+            }, (traversalOrder.length + 1) * delay);
+        }
+        
+        function resetDirected() {
+            drawDirectedGraph();
+        }
+        
+        drawDirectedGraph();
+        
+        // ========================
+        // Undirected Graph Visualization
+        // ========================
+        const undirectedCanvas = document.createElement('canvas');
+        document.getElementById('undirected-graph-demo').appendChild(undirectedCanvas);
+        undirectedCanvas.width = document.getElementById('undirected-graph-demo').clientWidth;
+        undirectedCanvas.height = document.getElementById('undirected-graph-demo').clientHeight;
+        const undirectedCtx = undirectedCanvas.getContext('2d');
+        
+        const undirectedNodes = [
+            { id: 'A', x: undirectedCanvas.width/2, y: 50 },
+            { id: 'B', x: undirectedCanvas.width/2 - 100, y: 150 },
+            { id: 'C', x: undirectedCanvas.width/2 + 100, y: 150 },
+            { id: 'D', x: undirectedCanvas.width/2 - 150, y: 250 },
+            { id: 'E', x: undirectedCanvas.width/2 - 50, y: 250 },
+            { id: 'F', x: undirectedCanvas.width/2 + 50, y: 250 },
+            { id: 'G', x: undirectedCanvas.width/2 + 150, y: 250 }
+        ];
+        
+        const undirectedEdges = [
+            { from: 'A', to: 'B' },
+            { from: 'A', to: 'C' },
+            { from: 'B', to: 'D' },
+            { from: 'B', to: 'E' },
+            { from: 'C', to: 'F' },
+            { from: 'C', to: 'G' },
+            { from: 'D', to: 'E' }
+        ];
+        
+        function drawUndirectedGraph(highlighted = []) {
+            undirectedCtx.clearRect(0, 0, undirectedCanvas.width, undirectedCanvas.height);
+            
+            undirectedEdges.forEach(edge => {
+                const fromNode = undirectedNodes.find(n => n.id === edge.from);
+                const toNode = undirectedNodes.find(n => n.id === edge.to);
+                
+                if (!fromNode || !toNode) return;
+                
+                undirectedCtx.beginPath();
+                undirectedCtx.moveTo(fromNode.x, fromNode.y);
+                undirectedCtx.lineTo(toNode.x, toNode.y);
+                undirectedCtx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                undirectedCtx.lineWidth = 2;
+                undirectedCtx.stroke();
+            });
+            
+            undirectedNodes.forEach(node => {
+                const isHighlighted = highlighted.includes(node.id);
+                
+                undirectedCtx.beginPath();
+                undirectedCtx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+                undirectedCtx.fillStyle = isHighlighted ? '#f72585' : '#4cc9f0';
+                undirectedCtx.fill();
+                undirectedCtx.strokeStyle = 'white';
+                undirectedCtx.lineWidth = 2;
+                undirectedCtx.stroke();
+                
+                undirectedCtx.fillStyle = 'white';
+                undirectedCtx.textAlign = 'center';
+                undirectedCtx.textBaseline = 'middle';
+                undirectedCtx.font = 'bold 16px Arial';
+                undirectedCtx.fillText(node.id, node.x, node.y);
+            });
+        }
+        
+        function runUndirectedDFS() {
+            const traversalOrder = ['A', 'B', 'D', 'E', 'C', 'F', 'G'];
+            const delay = 800;
+            
+            traversalOrder.forEach((id, i) => {
+                setTimeout(() => {
+                    drawUndirectedGraph([id]);
+                }, i * delay);
+            });
+            
+            setTimeout(() => {
+                drawUndirectedGraph();
+            }, (traversalOrder.length + 1) * delay);
+        }
+        
+        function resetUndirected() {
+            drawUndirectedGraph();
+        }
+        
+        drawUndirectedGraph();
+        
+        // ========================
+        // Recursive Call Stack Visualization
+        // ========================
+        const recursionCanvas = document.createElement('canvas');
+        document.getElementById('recursion-demo').appendChild(recursionCanvas);
+        recursionCanvas.width = document.getElementById('recursion-demo').clientWidth;
+        recursionCanvas.height = document.getElementById('recursion-demo').clientHeight;
+        const recursionCtx = recursionCanvas.getContext('2d');
+        
+        function drawRecursionStack(stack = []) {
+            recursionCtx.clearRect(0, 0, recursionCanvas.width, recursionCanvas.height);
+            
+            recursionCtx.fillStyle = 'white';
+            recursionCtx.font = 'bold 16px Arial';
+            recursionCtx.textAlign = 'left';
+            recursionCtx.textBaseline = 'middle';
+            
+            recursionCtx.fillText('Call Stack:', 20, 30);
+            
+            stack.forEach((frame, i) => {
+                recursionCtx.fillStyle = 'rgba(76, 201, 240, 0.8)';
+                recursionCtx.fillRect(20, 50 + i * 40, 200, 30);
+                
+                recursionCtx.fillStyle = 'white';
+                recursionCtx.fillText(frame, 30, 65 + i * 40);
+            });
+        }
+        
+        function startRecursionDemo() {
+            const steps = [
+                ['DFS(A)'],
+                ['DFS(A)', 'DFS(B)'],
+                ['DFS(A)', 'DFS(B)', 'DFS(D)'],
+                ['DFS(A)', 'DFS(B)', 'DFS(E)'],
+                ['DFS(A)', 'DFS(C)'],
+                ['DFS(A)', 'DFS(C)', 'DFS(F)'],
+                ['DFS(A)', 'DFS(C)', 'DFS(G)'],
+                ['DFS(A)'],
+                []
+            ];
+            
+            let step = 0;
+            function animate() {
+                if (step < steps.length) {
+                    drawRecursionStack(steps[step]);
+                    step++;
+                    setTimeout(animate, 1000);
+                }
+            }
+            
+            animate();
+        }
+        
+        function resetRecursionDemo() {
+            drawRecursionStack();
+        }
+        
+        drawRecursionStack();
+        
+        // ========================
+        // Iterative Stack Visualization
+        // ========================
+        const iterativeCanvas = document.createElement('canvas');
+        document.getElementById('iterative-demo').appendChild(iterativeCanvas);
+        iterativeCanvas.width = document.getElementById('iterative-demo').clientWidth;
+        iterativeCanvas.height = document.getElementById('iterative-demo').clientHeight;
+        const iterativeCtx = iterativeCanvas.getContext('2d');
+        
+        function drawIterativeStack(stack = []) {
+            iterativeCtx.clearRect(0, 0, iterativeCanvas.width, iterativeCanvas.height);
+            
+            iterativeCtx.fillStyle = 'white';
+            iterativeCtx.font = 'bold 16px Arial';
+            iterativeCtx.textAlign = 'left';
+            iterativeCtx.textBaseline = 'middle';
+            
+            iterativeCtx.fillText('Stack:', 20, 30);
+            
+            stack.forEach((node, i) => {
+                iterativeCtx.fillStyle = 'rgba(76, 201, 240, 0.8)';
+                iterativeCtx.fillRect(20, 50 + i * 40, 100, 30);
+                
+                iterativeCtx.fillStyle = 'white';
+                iterativeCtx.fillText(node, 30, 65 + i * 40);
+            });
+        }
+        
+        function startIterativeDemo() {
+            const steps = [
+                ['A'],
+                ['B', 'C'],
+                ['D', 'E', 'C'],
+                ['E', 'C'],
+                ['C'],
+                ['F', 'G'],
+                ['G'],
+                []
+            ];
+            
+            let step = 0;
+            function animate() {
+                if (step < steps.length) {
+                    drawIterativeStack(steps[step]);
+                    step++;
+                    setTimeout(animate, 1000);
+                }
+            }
+            
+            animate();
+        }
+        
+        function resetIterativeDemo() {
+            drawIterativeStack();
+        }
+        
+        drawIterativeStack();
+        
+        // ========================
+        // Cycle Detection Visualization
+        // ========================
+        const cycleCanvas = document.createElement('canvas');
+        document.getElementById('cycle-demo').appendChild(cycleCanvas);
+        cycleCanvas.width = document.getElementById('cycle-demo').clientWidth;
+        cycleCanvas.height = document.getElementById('cycle-demo').clientHeight;
+        const cycleCtx = cycleCanvas.getContext('2d');
+        
+        const cycleNodes = [
+            { id: 'A', x: cycleCanvas.width/2, y: 50 },
+            { id: 'B', x: cycleCanvas.width/2 - 100, y: 150 },
+            { id: 'C', x: cycleCanvas.width/2 + 100, y: 150 },
+            { id: 'D', x: cycleCanvas.width/2 - 100, y: 250 },
+            { id: 'E', x: cycleCanvas.width/2 + 100, y: 250 }
+        ];
+        
+        const cycleEdges = [
+            { from: 'A', to: 'B' },
+            { from: 'B', to: 'C' },
+            { from: 'C', to: 'D' },
+            { from: 'D', to: 'E' },
+            { from: 'E', to: 'B' }
+        ];
+        
+        function drawCycleGraph(highlightedNodes = [], highlightedEdges = []) {
+            cycleCtx.clearRect(0, 0, cycleCanvas.width, cycleCanvas.height);
+            
+            cycleEdges.forEach(edge => {
+                const fromNode = cycleNodes.find(n => n.id === edge.from);
+                const toNode = cycleNodes.find(n => n.id === edge.to);
+                
+                const isHighlighted = highlightedEdges.some(e => e.from === edge.from && e.to === edge.to);
+                
+                const angle = Math.atan2(toNode.y - fromNode.y, toNode.x - fromNode.x);
+                const headLength = 15;
+                
+                cycleCtx.beginPath();
+                cycleCtx.moveTo(fromNode.x, fromNode.y);
+                cycleCtx.lineTo(toNode.x, toNode.y);
+                cycleCtx.strokeStyle = isHighlighted ? '#f72585' : 'rgba(255, 255, 255, 0.3)';
+                cycleCtx.lineWidth = isHighlighted ? 4 : 2;
+                cycleCtx.stroke();
+                
+                cycleCtx.beginPath();
+                cycleCtx.moveTo(toNode.x, toNode.y);
+                cycleCtx.lineTo(
+                    toNode.x - headLength * Math.cos(angle - Math.PI / 6),
+                    toNode.y - headLength * Math.sin(angle - Math.PI / 6)
+                );
+                cycleCtx.lineTo(
+                    toNode.x - headLength * Math.cos(angle + Math.PI / 6),
+                    toNode.y - headLength * Math.sin(angle + Math.PI / 6)
+                );
+                cycleCtx.closePath();
+                cycleCtx.fillStyle = isHighlighted ? '#f72585' : 'rgba(255, 255, 255, 0.3)';
+                cycleCtx.fill();
+            });
+            
+            cycleNodes.forEach(node => {
+                const isHighlighted = highlightedNodes.includes(node.id);
+                
+                cycleCtx.beginPath();
+                cycleCtx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+                cycleCtx.fillStyle = isHighlighted ? '#f72585' : '#4cc9f0';
+                cycleCtx.fill();
+                cycleCtx.strokeStyle = 'white';
+                cycleCtx.lineWidth = 2;
+                cycleCtx.stroke();
+                
+                cycleCtx.fillStyle = 'white';
+                cycleCtx.textAlign = 'center';
+                cycleCtx.textBaseline = 'middle';
+                cycleCtx.font = 'bold 16px Arial';
+                cycleCtx.fillText(node.id, node.x, node.y);
+            });
+        }
+        
+        function startCycleDemo() {
+            const steps = [
+                { nodes: ['A'], edges: [] },
+                { nodes: ['A', 'B'], edges: [{ from: 'A', to: 'B' }] },
+                { nodes: ['A', 'B', 'C'], edges: [{ from: 'A', to: 'B' }, { from: 'B', to: 'C' }] },
+                { nodes: ['A', 'B', 'C', 'D'], edges: [{ from: 'A', to: 'B' }, { from: 'B', to: 'C' }, { from: 'C', to: 'D' }] },
+                { nodes: ['A', 'B', 'C', 'D', 'E'], edges: [{ from: 'A', to: 'B' }, { from: 'B', to: 'C' }, { from: 'C', to: 'D' }, { from: 'D', to: 'E' }] },
+                { nodes: ['B', 'C', 'D', 'E'], edges: [{ from: 'B', to: 'C' }, { from: 'C', to: 'D' }, { from: 'D', to: 'E' }, { from: 'E', to: 'B' }] }
+            ];
+            
+            let step = 0;
+            function animate() {
+                if (step < steps.length) {
+                    drawCycleGraph(steps[step].nodes, steps[step].edges);
+                    step++;
+                    setTimeout(animate, 1000);
+                }
+            }
+            
+            animate();
+        }
+        
+        function resetCycleDemo() {
+            drawCycleGraph();
+        }
+        
+        drawCycleGraph();
+        
+        // ========================
+        // Maze Solver Visualization
+        // ========================
+        const mazeCanvas = document.createElement('canvas');
+        document.getElementById('maze-demo').appendChild(mazeCanvas);
+        mazeCanvas.width = document.getElementById('maze-demo').clientWidth;
+        mazeCanvas.height = document.getElementById('maze-demo').clientHeight;
+        const mazeCtx = mazeCanvas.getContext('2d');
+        
+        let maze = [
+            [1, 1, 1, 0, 1, 1, 1, 1],
+            [1, 0, 1, 1, 1, 0, 0, 1],
+            [1, 0, 0, 0, 1, 0, 0, 1],
+            [1, 1, 1, 0, 1, 1, 1, 1],
+            [1, 0, 1, 0, 0, 0, 0, 1],
+            [1, 0, 1, 1, 1, 1, 0, 1],
+            [1, 0, 0, 0, 0, 1, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1]
+        ];
+        
+        const cellSize = Math.min(mazeCanvas.width / maze[0].length, mazeCanvas.height / maze.length);
+        
+        function drawMaze(path = []) {
+            mazeCtx.clearRect(0, 0, mazeCanvas.width, mazeCanvas.height);
+            
+            for (let y = 0; y < maze.length; y++) {
+                for (let x = 0; x < maze[y].length; x++) {
+                    mazeCtx.fillStyle = maze[y][x] === 1 ? 'white' : 'black';
+                    mazeCtx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+                    mazeCtx.strokeStyle = 'gray';
+                    mazeCtx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize);
+                }
+            }
+            
+            path.forEach((pos, i) => {
+                const [x, y] = pos;
+                const alpha = i / path.length * 0.8 + 0.2;
+                mazeCtx.fillStyle = `rgba(247, 37, 133, ${alpha})`;
+                mazeCtx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+            });
+            
+            mazeCtx.fillStyle = 'green';
+            mazeCtx.fillRect(0, 0, cellSize, cellSize);
+            mazeCtx.fillStyle = 'red';
+            mazeCtx.fillRect((maze[0].length-1) * cellSize, (maze.length-1) * cellSize, cellSize, cellSize);
+        }
+        
+        function solveMazeDFS() {
+            const visited = Array(maze.length).fill().map(() => Array(maze[0].length).fill(false));
+            const path = [];
+            
+            function dfs(x, y) {
+                if (x < 0 || y < 0 || x >= maze[0].length || y >= maze.length || maze[y][x] === 0) {
+                    return false;
+                }
+                
+                if (visited[y][x]) {
+                    return false;
+                }
+                
+                visited[y][x] = true;
+                path.push([x, y]);
+                
+                drawMaze(path);
+                
+                if (x === maze[0].length - 1 && y === maze.length - 1) {
+                    return true;
+                }
+                
+                if (dfs(x + 1, y)) return true;
+                if (dfs(x, y + 1)) return true;
+                if (dfs(x - 1, y)) return true;
+                if (dfs(x, y - 1)) return true;
+                
+                path.pop();
+                return false;
+            }
+            
+            let step = 0;
+            function animate() {
+                if (step < path.length) {
+                    drawMaze(path.slice(0, step + 1));
+                    step++;
+                    setTimeout(animate, 200);
+                }
+            }
+            
+            dfs(0, 0);
+            animate();
+        }
+        
+        function resetMaze() {
+            maze = [
+                [1, 1, 1, 0, 1, 1, 1, 1],
+                [1, 0, 1, 1, 1, 0, 0, 1],
+                [1, 0, 0, 0, 1, 0, 0, 1],
+                [1, 1, 1, 0, 1, 1, 1, 1],
+                [1, 0, 1, 0, 0, 0, 0, 1],
+                [1, 0, 1, 1, 1, 1, 0, 1],
+                [1, 0, 0, 0, 0, 1, 0, 1],
+                [1, 1, 1, 1, 1, 1, 1, 1]
+            ];
+            drawMaze();
+        }
+        
+        drawMaze();
+        
+        // ========================
+        // Web Crawling Visualization
+        // ========================
+        const webCrawlCanvas = document.createElement('canvas');
+        document.getElementById('web-crawl-demo').appendChild(webCrawlCanvas);
+        webCrawlCanvas.width = document.getElementById('web-crawl-demo').clientWidth;
+        webCrawlCanvas.height = document.getElementById('web-crawl-demo').clientHeight;
+        const webCrawlCtx = webCrawlCanvas.getContext('2d');
+        
+        const webNodes = [
+            { id: 'Home', x: webCrawlCanvas.width/2, y: 50 },
+            { id: 'About', x: webCrawlCanvas.width/2 - 100, y: 150 },
+            { id: 'Products', x: webCrawlCanvas.width/2 + 100, y: 150 },
+            { id: 'Contact', x: webCrawlCanvas.width/2 - 100, y: 250 },
+            { id: 'Blog', x: webCrawlCanvas.width/2 + 100, y: 250 }
+        ];
+        
+        const webEdges = [
+            { from: 'Home', to: 'About' },
+            { from: 'Home', to: 'Products' },
+            { from: 'Products', to: 'Contact' },
+            { from: 'Products', to: 'Blog' }
+        ];
+        
+        function drawWebCrawl(highlighted = []) {
+            webCrawlCtx.clearRect(0, 0, webCrawlCanvas.width, webCrawlCanvas.height);
+            
+            webEdges.forEach(edge => {
+                const fromNode = webNodes.find(n => n.id === edge.from);
+                const toNode = webNodes.find(n => n.id === edge.to);
+                
+                webCrawlCtx.beginPath();
+                webCrawlCtx.moveTo(fromNode.x, fromNode.y);
+                webCrawlCtx.lineTo(toNode.x, toNode.y);
+                webCrawlCtx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                webCrawlCtx.lineWidth = 2;
+                webCrawlCtx.stroke();
+            });
+            
+            webNodes.forEach(node => {
+                const isHighlighted = highlighted.includes(node.id);
+                
+                webCrawlCtx.beginPath();
+                webCrawlCtx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+                webCrawlCtx.fillStyle = isHighlighted ? '#f72585' : '#4cc9f0';
+                webCrawlCtx.fill();
+                webCrawlCtx.strokeStyle = 'white';
+                webCrawlCtx.lineWidth = 2;
+                webCrawlCtx.stroke();
+                
+                webCrawlCtx.fillStyle = 'white';
+                webCrawlCtx.textAlign = 'center';
+                webCrawlCtx.textBaseline = 'middle';
+                webCrawlCtx.font = 'bold 12px Arial';
+                webCrawlCtx.fillText(node.id, node.x, node.y);
+            });
+        }
+        
+        function startCrawling() {
+            const crawlOrder = ['Home', 'About', 'Products', 'Contact', 'Blog'];
+            let index = 0;
+            
+            function animateCrawl() {
+                if (index < crawlOrder.length) {
+                    drawWebCrawl([crawlOrder[index]]);
+                    index++;
+                    setTimeout(animateCrawl, 800);
+                } else {
+                    drawWebCrawl();
+                }
+            }
+            
+            animateCrawl();
+        }
+        
+        drawWebCrawl();
+        
+        // ========================
+        // Social Network Visualization
+        // ========================
+        const socialCanvas = document.createElement('canvas');
+        document.getElementById('social-network-demo').appendChild(socialCanvas);
+        socialCanvas.width = document.getElementById('social-network-demo').clientWidth;
+        socialCanvas.height = document.getElementById('social-network-demo').clientHeight;
+        const socialCtx = socialCanvas.getContext('2d');
+        
+        const socialNodes = [
+            { id: 'Alice', x: socialCanvas.width/2, y: 50 },
+            { id: 'Bob', x: socialCanvas.width/2 - 100, y: 150 },
+            { id: 'Charlie', x: socialCanvas.width/2 + 100, y: 150 },
+            { id: 'David', x: socialCanvas.width/2 - 100, y: 250 },
+            { id: 'Eve', x: socialCanvas.width/2 + 100, y: 250 }
+        ];
+        
+        const socialEdges = [
+            { from: 'Alice', to: 'Bob' },
+            { from: 'Alice', to: 'Charlie' },
+            { from: 'Bob', to: 'David' },
+            { from: 'Charlie', to: 'Eve' },
+            { from: 'David', to: 'Eve' }
+        ];
+        
+        function drawSocialNetwork(highlighted = []) {
+            socialCtx.clearRect(0, 0, socialCanvas.width, socialCanvas.height);
+            
+            socialEdges.forEach(edge => {
+                const fromNode = socialNodes.find(n => n.id === edge.from);
+                const toNode = socialNodes.find(n => n.id === edge.to);
+                
+                socialCtx.beginPath();
+                socialCtx.moveTo(fromNode.x, fromNode.y);
+                socialCtx.lineTo(toNode.x, toNode.y);
+                socialCtx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                socialCtx.lineWidth = 2;
+                socialCtx.stroke();
+            });
+            
+            socialNodes.forEach(node => {
+                const isHighlighted = highlighted.includes(node.id);
+                
+                socialCtx.beginPath();
+                socialCtx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+                socialCtx.fillStyle = isHighlighted ? '#f72585' : '#4cc9f0';
+                socialCtx.fill();
+                socialCtx.strokeStyle = 'white';
+                socialCtx.lineWidth = 2;
+                socialCtx.stroke();
+                
+                socialCtx.fillStyle = 'white';
+                socialCtx.textAlign = 'center';
+                socialCtx.textBaseline = 'middle';
+                socialCtx.font = 'bold 12px Arial';
+                socialCtx.fillText(node.id, node.x, node.y);
+            });
+        }
+        
+        function analyzeSocialNetwork() {
+            const traversalOrder = ['Alice', 'Bob', 'David', 'Eve', 'Charlie'];
+            const delay = 800;
+            
+            traversalOrder.forEach((id, i) => {
+                setTimeout(() => {
+                    drawSocialNetwork([id]);
+                }, i * delay);
+            });
+            
+            setTimeout(() => {
+                drawSocialNetwork();
+            }, (traversalOrder.length + 1) * delay);
+        }
+        
+        function resetSocialNetwork() {
+            drawSocialNetwork();
+        }
+        
+        drawSocialNetwork();
+        
+        // ========================
+        // Sudoku Solver Visualization
+        // ========================
+        const sudokuCanvas = document.createElement('canvas');
+        document.getElementById('sudoku-demo').appendChild(sudokuCanvas);
+        sudokuCanvas.width = document.getElementById('sudoku-demo').clientWidth;
+        sudokuCanvas.height = document.getElementById('sudoku-demo').clientHeight;
+        const sudokuCtx = sudokuCanvas.getContext('2d');
+        
+        let sudoku = [
+            [5, 3, 0, 0, 7, 0, 0, 0, 0],
+            [6, 0, 0, 1, 9, 5, 0, 0, 0],
+            [0, 9, 8, 0, 0, 0, 0, 6, 0],
+            [8, 0, 0, 0, 6, 0, 0, 0, 3],
+            [4, 0, 0, 8, 0, 3, 0, 0, 1],
+            [7, 0, 0, 0, 2, 0, 0, 0, 6],
+            [0, 6, 0, 0, 0, 0, 2, 8, 0],
+            [0, 0, 0, 4, 1, 9, 0, 0, 5],
+            [0, 0, 0, 0, 8, 0, 0, 7, 9]
+        ];
+        
+        const cellSudokuSize = Math.min(sudokuCanvas.width / 9, sudokuCanvas.height / 9);
+        
+        function drawSudoku(highlighted = []) {
+            sudokuCtx.clearRect(0, 0, sudokuCanvas.width, sudokuCanvas.height);
+            
+            sudokuCtx.strokeStyle = 'white';
+            sudokuCtx.lineWidth = 1;
+            
+            for (let i = 0; i <= 9; i++) {
+                sudokuCtx.beginPath();
+                sudokuCtx.moveTo(i * cellSudokuSize, 0);
+                sudokuCtx.lineTo(i * cellSudokuSize, sudokuCanvas.height);
+                sudokuCtx.stroke();
+                
+                sudokuCtx.beginPath();
+                sudokuCtx.moveTo(0, i * cellSudokuSize);
+                sudokuCtx.lineTo(sudokuCanvas.width, i * cellSudokuSize);
+                sudokuCtx.stroke();
+            }
+            
+            sudokuCtx.lineWidth = 3;
+            for (let i = 0; i <= 3; i++) {
+                sudokuCtx.beginPath();
+                sudokuCtx.moveTo(i * 3 * cellSudokuSize, 0);
+                sudokuCtx.lineTo(i * 3 * cellSudokuSize, sudokuCanvas.height);
+                sudokuCtx.stroke();
+                
+                sudokuCtx.beginPath();
+                sudokuCtx.moveTo(0, i * 3 * cellSudokuSize);
+                sudokuCtx.lineTo(sudokuCanvas.width, i * 3 * cellSudokuSize);
+                sudokuCtx.stroke();
+            }
+            
+            sudokuCtx.font = `bold ${cellSudokuSize * 0.6}px Arial`;
+            sudokuCtx.textAlign = 'center';
+            sudokuCtx.textBaseline = 'middle';
+            
+            for (let y = 0; y < 9; y++) {
+                for (let x = 0; x < 9; x++) {
+                    const value = sudoku[y][x];
+                    if (value !== 0) {
+                        const isHighlighted = highlighted.some(pos => pos[0] === x && pos[1] === y);
+                        sudokuCtx.fillStyle = isHighlighted ? '#f72585' : 'white';
+                        sudokuCtx.fillText(
+                            value.toString(),
+                            x * cellSudokuSize + cellSudokuSize / 2,
+                            y * cellSudokuSize + cellSudokuSize / 2
+                        );
+                    }
+                }
+            }
+        }
+        
+        function solveSudoku() {
+            const steps = [];
+            
+            function solve() {
+                for (let y = 0; y < 9; y++) {
+                    for (let x = 0; x < 9; x++) {
+                        if (sudoku[y][x] === 0) {
+                            for (let num = 1; num <= 9; num++) {
+                                if (isValid(x, y, num)) {
+                                    sudoku[y][x] = num;
+                                    steps.push({ x, y, num, action: 'place' });
+                                    
+                                    if (solve()) {
+                                        return true;
+                                    }
+                                    
+                                    sudoku[y][x] = 0;
+                                    steps.push({ x, y, num: 0, action: 'remove' });
+                                }
+                            }
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            
+            function isValid(x, y, num) {
+                for (let i = 0; i < 9; i++) {
+                    if (sudoku[y][i] === num) return false;
+                }
+                
+                for (let i = 0; i < 9; i++) {
+                    if (sudoku[i][x] === num) return false;
+                }
+                
+                const boxX = Math.floor(x / 3) * 3;
+                const boxY = Math.floor(y / 3) * 3;
+                
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        if (sudoku[boxY + i][boxX + j] === num) return false;
+                    }
+                }
+                
+                return true;
+            }
+            
+            solve();
+            animateSudokuSteps(steps, 0);
+        }
+        
+        function animateSudokuSteps(steps, index) {
+            if (index < steps.length) {
+                const step = steps[index];
+                sudoku[step.y][step.x] = step.num;
+                
+                const highlighted = [];
+                if (step.action === 'place') {
+                    highlighted.push([step.x, step.y]);
+                }
+                
+                drawSudoku(highlighted);
+                
+                setTimeout(() => {
+                    animateSudokuSteps(steps, index + 1);
+                }, 100);
+            }
+        }
+        
+        function resetSudoku() {
+            sudoku = [
+                [5, 3, 0, 0, 7, 0, 0, 0, 0],
+                [6, 0, 0, 1, 9, 5, 0, 0, 0],
+                [0, 9, 8, 0, 0, 0, 0, 6, 0],
+                [8, 0, 0, 0, 6, 0, 0, 0, 3],
+                [4, 0, 0, 8, 0, 3, 0, 0, 1],
+                [7, 0, 0, 0, 2, 0, 0, 0, 6],
+                [0, 6, 0, 0, 0, 0, 2, 8, 0],
+                [0, 0, 0, 4, 1, 9, 0, 0, 5],
+                [0, 0, 0, 0, 8, 0, 0, 7, 9]
+            ];
+            drawSudoku();
+        }
+        
+        drawSudoku();
+        
+        // ========================
+        // Chess Move Explorer
+        // ========================
+        const chessCanvas = document.createElement('canvas');
+        document.getElementById('chess-demo').appendChild(chessCanvas);
+        chessCanvas.width = document.getElementById('chess-demo').clientWidth;
+        chessCanvas.height = document.getElementById('chess-demo').clientHeight;
+        const chessCtx = chessCanvas.getContext('2d');
+        
+        let chessBoard = [
+            [2, 3, 4, 5, 6, 4, 3, 2],
+            [1, 1, 1, 1, 1, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [-1, -1, -1, -1, -1, -1, -1, -1],
+            [-2, -3, -4, -5, -6, -4, -3, -2]
+        ];
+        
+        const chessPieceNames = {
+            '1': '♙', '-1': '♟',
+            '2': '♖', '-2': '♜',
+            '3': '♘', '-3': '♞',
+            '4': '♗', '-4': '♝',
+            '5': '♕', '-5': '♛',
+            '6': '♔', '-6': '♚'
+        };
+        
+        const chessCellSize = Math.min(chessCanvas.width / 8, chessCanvas.height / 8);
+        
+        function drawChessBoard(highlighted = []) {
+            chessCtx.clearRect(0, 0, chessCanvas.width, chessCanvas.height);
+            
+            for (let y = 0; y < 8; y++) {
+                for (let x = 0; x < 8; x++) {
+                    chessCtx.fillStyle = (x + y) % 2 === 0 ? '#f0d9b5' : '#b58863';
+                    chessCtx.fillRect(x * chessCellSize, y * chessCellSize, chessCellSize, chessCellSize);
+                    
+                    if (highlighted.some(pos => pos[0] === x && pos[1] === y)) {
+                        chessCtx.fillStyle = 'rgba(247, 37, 133, 0.5)';
+                        chessCtx.fillRect(x * chessCellSize, y * chessCellSize, chessCellSize, chessCellSize);
+                    }
+                }
+            }
+            
+            chessCtx.font = `bold ${chessCellSize * 0.8}px Arial`;
+            chessCtx.textAlign = 'center';
+            chessCtx.textBaseline = 'middle';
+            
+            for (let y = 0; y < 8; y++) {
+                for (let x = 0; x < 8; x++) {
+                    const piece = chessBoard[y][x];
+                    if (piece !== 0) {
+                        chessCtx.fillStyle = piece > 0 ? 'white' : 'black';
+                        chessCtx.fillText(
+                            chessPieceNames[piece],
+                            x * chessCellSize + chessCellSize / 2,
+                            y * chessCellSize + chessCellSize / 2
+                        );
+                    }
+                }
+            }
+        }
+        
+        function exploreChessMoves() {
+            const startX = 4;
+            const startY = 6;
+            const moves = [];
+            
+            moves.push([startX, startY - 1]);
+            moves.push([startX - 1, startY - 1]);
+            moves.push([startX + 1, startY - 1]);
+            
+            let step = 0;
+            function animate() {
+                if (step < moves.length) {
+                    drawChessBoard([[startX, startY], moves[step]]);
+                    step++;
+                    setTimeout(animate, 800);
+                } else {
+                    drawChessBoard([[startX, startY]]);
+                }
+            }
+            
+            animate();
+        }
+        
+        drawChessBoard();
+        
+        // ========================
+        // Window resize handling
+        // ========================
+        window.addEventListener('resize', function() {
+            const canvases = [
+                treeCanvas, directedCanvas, undirectedCanvas,
+                recursionCanvas, iterativeCanvas, cycleCanvas,
+                mazeCanvas, webCrawlCanvas, socialCanvas,
+                sudokuCanvas, chessCanvas
+            ];
+            
+            canvases.forEach(canvas => {
+                const container = canvas.parentElement;
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+            });
+            
+            drawTree();
+            drawDirectedGraph();
+            drawUndirectedGraph();
+            drawRecursionStack();
+            drawIterativeStack();
+            drawCycleGraph();
+            drawMaze();
+            drawWebCrawl();
+            drawSocialNetwork();
+            drawSudoku();
+            drawChessBoard();
+        });
+    </script>
+</body>
+</html>
